@@ -25,5 +25,48 @@
 </head>
 <body>
     <div id="video-grid"></div>
+    <script>
+    window.onload = function () {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.interimResults = true;
+        recognition.continuous = true;
+
+        let transcriptDiv = document.createElement("div");
+        transcriptDiv.id = "transcript";
+        transcriptDiv.style.position = "fixed";
+        transcriptDiv.style.bottom = "10px";
+        transcriptDiv.style.left = "10px";
+        transcriptDiv.style.background = "rgba(0, 0, 0, 0.6)";
+        transcriptDiv.style.color = "white";
+        transcriptDiv.style.padding = "10px";
+        transcriptDiv.style.borderRadius = "10px";
+        transcriptDiv.style.fontSize = "16px";
+        document.body.appendChild(transcriptDiv);
+
+        let clearTimer;
+
+        recognition.onresult = (event) => {
+            let currentTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                const transcript = event.results[i][0].transcript;
+                currentTranscript += transcript;
+            }
+
+            transcriptDiv.innerText = currentTranscript;
+
+            // Clear previous timer
+            clearTimeout(clearTimer);
+
+            // Set timer to clear the text after 3 seconds
+            clearTimer = setTimeout(() => {
+                transcriptDiv.innerText = '';
+            }, 3000);
+        };
+
+        recognition.start();
+    };
+    </script>
 </body>
 </html>
