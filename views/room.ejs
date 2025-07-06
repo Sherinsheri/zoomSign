@@ -22,9 +22,21 @@
             object-fit: cover;
         }
     </style>
+    <style>
+#sign-language-box {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+</style>
+
 </head>
 <body>
     <div id="video-grid"></div>
+    <div id="sign-language-box"></div>
     <script>
     window.onload = function () {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -59,11 +71,57 @@
             // Clear previous timer
             clearTimeout(clearTimer);
 
+              showSignLanguageSequentially(currentTranscript);
+
             // Set timer to clear the text after 3 seconds
             clearTimer = setTimeout(() => {
                 transcriptDiv.innerText = '';
-            }, 3000);
+            }, 1000);
         };
+        
+
+
+        function showSignLanguageSequentially(captionText) {
+    const box = document.getElementById("sign-language-box");
+    box.innerHTML = ""; // clear previous GIF
+
+    const words = captionText.toLowerCase().trim();
+    const img = document.createElement("img");
+    img.style.width = "300px";
+    box.appendChild(img);
+
+    let index = 0;
+    const signGifs = {
+  "hello": "/gifs/hello.gif",
+  "good morning": "/gifs/goodmorning.gif",
+  "everyone": "/gifs/everyone.gif",
+  //"thanks": "/gifs/thanks.gif",
+  // add more words here
+};
+
+
+    function showNextGif() {
+        if (index >= words.length) return;
+
+        //const word = words[index];
+        const gifPath = signGifs[words];
+
+        img.src = gifPath;
+        img.alt = word;
+
+        img.onerror = () => {
+            index++;
+            showNextGif(); // skip if gif doesn't exist
+        };
+
+        index++;
+        setTimeout(showNextGif, 2500); // show next after 2.5 sec
+    }
+
+    showNextGif();
+}
+
+
 
         recognition.start();
     };
