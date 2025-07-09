@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut, SignIn, UserButton } from '@clerk/clerk-react';
-
-function App() {
+import Home from './Home';
+function Signin() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       
@@ -11,11 +11,11 @@ function App() {
 
       {/* When user is signed in, show main content */}
       <SignedIn>
-        <h1 className="text-black text-3xl font-bold mb-4">Welcome 🎉</h1>
+        <Home/>
         <UserButton />
       </SignedIn>
     </div>
   );
 }
 
-export default App;
+export default Signin;

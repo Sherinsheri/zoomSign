@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
   //It redirects the client (browser) to a different URL.
   res.redirect(`/${uuidV4()}`);
 });
+app.get("/home", (req, res) => {
+  //It redirects the client (browser) to a different URL.
+  res.redirect(`/${uuidV4()}`);
+});
 app.get("/:room", (req, res) => {
   //Render a dynamic HTML page using a template engine (like EJS, Pug, Handlebars, etc.)
   res.render("room", { roomId: req.params.room });
