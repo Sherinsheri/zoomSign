@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+
+import Signup from './Signup';
+
 import Home from './Home';
 import Signin from './Signin';
-import Signup from './Signup';
+import JoinRoom from './components/JoinRoom';
 
 export default function App() {
   return (
@@ -12,6 +15,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/join" element={<JoinRoom />} />
       </Routes>
     </Router>
   );

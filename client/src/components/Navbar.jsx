@@ -4,7 +4,7 @@ import img from '../assets/appicon.svg';
 const Navbar = () => {
 
   return (
-    <nav className="flex  justify-between items-center fixed z-50 w-full bg-blue-950 px-6 py-3 lg:px-10">
+    <nav className="flex  justify-between items-center fixed top-0 left-0 z-50 w-full bg-blue-950 px-6 py-3 lg:px-10 ">
             <div className='flex items-center gap-1.5'>
                 <img src={img}
                     alt="icon" 
