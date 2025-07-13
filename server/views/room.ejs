@@ -13,6 +13,22 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <button id="copyBtn" style="
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px 15px;
+  background-color: 
+#162556;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+">
+  Copy Meeting ID
+</button>
+
     <div id="video-grid"></div>
     <div id="sign-language-container">
         <div id="sign-language-box"></div>
@@ -20,6 +36,19 @@
     </div>
     <script>
     window.onload = function () {
+        document.getElementById("copyBtn").addEventListener("click", function () {
+    if (ROOM_ID) {
+        navigator.clipboard.writeText(ROOM_ID).then(() => {
+            this.innerText = "Copied!";
+            setTimeout(() => {
+                this.innerText = "Copy Meeting ID";
+            }, 1500);
+        }).catch(err => {
+            console.error("Failed to copy:", err);
+        });
+    }
+});
+
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognition = new SpeechRecognition();
 
