@@ -1,29 +1,25 @@
-import { SignedIn, SignedOut, SignIn, UserButton } from '@clerk/clerk-react';
+import { SignUp, SignedOut, SignedIn, UserButton } from '@clerk/clerk-react';
 import Home from './Home';
 import { darkT } from './components/clerkTheme.jsx';
 
-
-function Signin() {
+function Signup() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      
-      {/* When user is not signed in, show the sign-in page */}
       <SignedOut>
-        <SignIn appearance={{
+        <SignUp appearance={{
             variables: darkT.variables,
             elements: darkT.elements,
           }}
-          signUpUrl="/signup"
+          signInUrl="/"
            />
       </SignedOut>
 
-      {/* When user is signed in, show main content */}
       <SignedIn>
-        <Home/>
-        
+        <Home />
+        <UserButton />
       </SignedIn>
     </div>
   );
 }
 
-export default Signin;
+export default Signup;
