@@ -61,39 +61,6 @@ function addVideoStream(video, stream) {
   });
   videoGrid.append(video);
 }
-// function showSignLanguageSequentially(captionText) {
-//   const box = document.getElementById("sign-language-box");
-//   box.innerHTML = ""; // clear previous
-
-//   const words = captionText.toLowerCase().split(" ");
-//   const img = document.createElement("img");
-//   img.style.width = "300px";
-//   box.appendChild(img);
-
-//   let index = 0;
-
-//   function showNextGif() {
-//     if (index >= words.length) return;
-
-//     const word = words[index];
-//     const gifPath = `/gifs/${word}.gif`;
-
-//     img.src = gifPath;
-//     img.alt = word;
-
-//     img.onerror = () => {
-//       index++;
-//       showNextGif(); // skip missing gif
-//     };
-
-//     index++;
-
-//     // Show each gif for 2.5 seconds (adjust if needed)
-//     setTimeout(showNextGif, 2500);
-//   }
-
-//   showNextGif();
-// }
 
 
 
