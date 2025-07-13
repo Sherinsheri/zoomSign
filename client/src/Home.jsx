@@ -42,8 +42,8 @@ function Home() {
             <h2>Start an instant meeting</h2>
           </div>
         </div>
-        <div className="p-1 bg-blue-950 w-80 rounded-3xl flex flex-col justify-around hover:bg-blue-800 p-3">
-          <button onClick={handlejoin} className="cursor-pointer">
+        <div onClick={handlejoin} className="p-1 bg-blue-950 w-80 rounded-3xl flex flex-col justify-around hover:bg-blue-800 p-3">
+          <button  className="cursor-pointer">
             <img src={joinIcon} width={40} className="invert" />
           </button>
           <div>
