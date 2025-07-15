@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
     <script>
         const ROOM_ID="<%= roomId %>"
     </script>
     <script defer src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
     <script src="/socket.io/socket.io.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="/public/script.js" defer></script>
 </head>
 <body>
     <button id="copyBtn" style="
@@ -92,13 +92,13 @@
 
     let index = 0;
     const signGifs = {
-  "hello": "/gifs/hello.gif",
-  "good morning": "/gifs/goodmorning.gif",
-  "everyone": "/gifs/everyone.gif",
-  "thank you": "/gifs/thankyou.gif",
-  "see you later":"/gifs/seeyoulater.gif",
-  "you are welcome":"/gifs/youarewelcome.gif",
-  "nice to meet you":"/gifs/nicetomeetyou.gif",
+  "hello": "/public/gifs/hello.gif",
+  "good morning": "/public/gifs/goodmorning.gif",
+  "everyone": "/public/gifs/everyone.gif",
+  "thank you": "/public/gifs/thankyou.gif",
+  "see you later":"/public/gifs/seeyoulater.gif",
+  "you are welcome":"/public/gifs/youarewelcome.gif",
+  "nice to meet you":"/public/gifs/nicetomeetyou.gif",
  
 };
 
