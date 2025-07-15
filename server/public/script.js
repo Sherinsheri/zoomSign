@@ -1,9 +1,10 @@
-const socket = io("window.location.origin");
+const socket = io(window.location.origin);
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
   host: window.location.hostname,
-  port: window.location.port,
+  port: 443, // ✅ PeerJS needs secure port for Cloudflare
   path: "/peerjs",
+  secure: true, // ✅ Must be true when tunneling through HTTPS
 });
 
 const myVideo = document.createElement("video");

@@ -13,7 +13,7 @@ const io = socketIO(server);
 // PeerJS setup
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-  path: "/peerjs"
+  path: "/"
 });
 app.use("/peerjs", peerServer);
 
@@ -42,17 +42,26 @@ app.get("/home", (req, res) => {
   res.json({ roomUrl: fullUrl });
 });
 
-
 // EJS-rendered room (used by backend routes like /:room)
 app.get("/:room", (req, res) => {
   res.render("room", { roomId: req.params.room });
 });
 
-// React fallback route (optional if using React routing)
-app.get("*", (req, res) => {
+// ✅ React fallback route (protect backend routes)
+app.get("*", (req, res, next) => {
+  if (
+    req.originalUrl.startsWith("/peerjs") ||
+    req.originalUrl.startsWith("/socket.io") ||
+    req.originalUrl.startsWith("/public") ||
+    req.originalUrl.endsWith(".js") ||
+    req.originalUrl.endsWith(".css") ||
+    req.originalUrl.endsWith(".map")
+  ) {
+    return next();
+  }
+
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
-
 // Socket.IO handling
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
@@ -67,6 +76,6 @@ io.on("connection", (socket) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
