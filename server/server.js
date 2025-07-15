@@ -38,8 +38,10 @@ app.get("/", (req, res) => {
 // API: get room URL (optional for frontend)
 app.get("/home", (req, res) => {
   const roomId = uuidV4();
-  res.json({ roomUrl: `/${roomId}` });
+  const fullUrl = `${req.protocol}://${req.get("host")}/${roomId}`;
+  res.json({ roomUrl: fullUrl });
 });
+
 
 // EJS-rendered room (used by backend routes like /:room)
 app.get("/:room", (req, res) => {

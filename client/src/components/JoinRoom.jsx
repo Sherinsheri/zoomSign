@@ -6,7 +6,7 @@ function JoinRoom() {
   function handleJoin(){
     if (url.trim() !== "") {
       const cleanedUrl = url.startsWith("/") ? url : `/${url}`;
-      window.open(`http://localhost:3000${cleanedUrl}`, "_blank");
+      window.open(`${window.location.origin}${cleanedUrl}`, "_blank");
       seturl("");
     }
   
